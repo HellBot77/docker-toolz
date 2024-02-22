@@ -6,7 +6,7 @@ RUN git clone https://github.com/d3ward/toolz.git && \
     ([[ "$TAG" = "latest" ]] || git checkout ${TAG}) && \
     rm -rf .git
 
-FROM node:alpine as build
+FROM node:20 as build
 
 WORKDIR /toolz
 COPY --from=base /git/toolz .
@@ -15,5 +15,5 @@ RUN npm install && \
 
 FROM pierrezemb/gostatic
 
-COPY --from=build /toolz/build /srv/http/toolz
+COPY --from=build /toolz/dist /srv/http/toolz
 EXPOSE 8043
