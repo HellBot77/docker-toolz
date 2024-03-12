@@ -13,7 +13,6 @@ COPY --from=base /git/toolz .
 RUN npm install && \
     npm run build
 
-FROM pierrezemb/gostatic
+FROM lipanski/docker-static-website
 
-COPY --from=build /toolz/dist /srv/http/toolz
-EXPOSE 8043
+COPY --from=build /toolz/dist .
