@@ -15,4 +15,4 @@ RUN npm install && \
 
 FROM lipanski/docker-static-website
 
-COPY --from=build /toolz/dist .
+COPY --from=build /toolz/dist toolz
